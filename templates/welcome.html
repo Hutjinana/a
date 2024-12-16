@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Page</title>
+</head>
+<body>
+    <h1>Welcome to Physical Therapy</h1>
+    <p>Click below to do physical therapy:</p>
+    <a href="{{ url_for('cam1') }}">Step 1</a>
+    <button onclick="stopCamera()">Stop Camera</button>
+    <br>
+    <a href="{{ url_for('cam2') }}">Step 2</a>
+    <button onclick="stopCamera()">Stop Camera</button>
+    <br><br>
+    
+</body>
+<script>
+    function stopCamera() {
+        fetch('/stop_camera', { method: 'POST' })
+            .then(response => {
+                if (response.ok) {
+                    alert('Camera stopped');
+                } else {
+                    alert('Failed to stop camera');
+                }
+            })
+            .catch(error => console.error('Error stopping camera:', error));
+    }
+</script>
+</html>
